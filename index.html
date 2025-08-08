@@ -2,37 +2,37 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="keywords" content="Feature Embedding Comparison, Embedding Alignment, Interpretable Machine Learning, Spectral Clustering, Kernel Matrix Analysis, Deep Representation Learning, CLIP Embedding, Embedding Evaluation, Spectral Methods, Model Comparison">
+  <meta name="keywords" content="Feature Embedding Comparison, Interpretable Machine Learning, Spectral Clustering, Kernel Matrix Analysis, Deep Representation Learning, CLIP Embedding, Embedding Evaluation, Spectral Methods, Model Comparison, Diversity Evaluation, Prompt-Aware Diversity">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SPEC: Explainable Comparison and Alignment of Feature Embeddings</title>
+  <title>Scendi Score: Prompt-Aware Diversity Evaluation via Schur Complement of CLIP Embeddings</title>
 
-  <meta name="description" content="SPEC is a spectral method for comparing and aligning feature embeddings via kernel eigendecomposition and cluster analysis.">
-  <meta name="author" content="Mohammad Jalali">
+  <meta name="description" content="Scendi Score is a Schur Complement-based metric for measuring prompt-aware diversity for generative models.">
+  <meta name="author" content="Azim Ospanov">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://aziksh-ospanov.github.io/Scendi/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="SPEC: Explainable Comparison and Alignment of Feature Embeddings">
-  <meta property="og:description" content="SPEC is a spectral method for comparing and aligning feature embeddings via kernel eigendecomposition and cluster analysis.">
+  <meta property="og:title" content="Scendi Score: Prompt-Aware Diversity Evaluation via Schur Complement of CLIP Embeddings">
+  <meta property="og:description" content="Scendi Score is a Schur Complement-based metric for measuring prompt-aware diversity for generative models.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aziksh-ospanov.github.io/Scendi/">
-  <meta property="og:image" content="https://aziksh-ospanov.github.io/Scendi/static/images/spec_overview.webp">
-  <meta property="og:image:alt" content="SPEC Overview Diagram">
-  <meta property="og:site_name" content="SPEC: Feature Embedding Analysis">
+  <meta property="og:image" content="https://aziksh-ospanov.github.io/Scendi/static/images/scendi_overview.png">
+  <meta property="og:image:alt" content="Scendi Overview Diagram">
+  <meta property="og:site_name" content="Scendi: Prompt-Aware Diversity Metric">
 
   <!-- Twitter Card -->
-  <meta name="twitter:title" content="SPEC: Explainable Comparison and Alignment of Feature Embeddings">
-  <meta name="twitter:description" content="SPEC provides interpretable tools for evaluating and aligning feature embeddings based on kernel matrix analysis.">
-  <meta name="twitter:image" content="https://aziksh-ospanov.github.io/Scendi/static/images/spec_overview.webp">
+  <meta name="twitter:title" content="Scendi Score: Prompt-Aware Diversity Evaluation via Schur Complement of CLIP Embeddings">
+  <meta name="twitter:description" content="Scendi Score is a Schur Complement-based metric for measuring prompt-aware diversity for generative models.">
+  <meta name="twitter:image" content="https://aziksh-ospanov.github.io/Scendi/static/images/scendi_overview.png">
 
   <!-- Optional LinkedIn Preview -->
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
-  <!-- Mobile & Verification -->
+  <!-- Mobile & Verification [change later]-->
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="google-site-verification" content="xMHDE6Ljiod7PoRSLLiGs1coM6j1U_bVS5GSoWCGj9Q" />
+<meta name="google-site-verification" content="ez0KnTiK2YpwWuEIBIzrouoYFvZ1QG6UzDMHAk9tiic" />
 <meta property="article:published_time" content="2025-06-26T00:00:00Z" />
 
 
@@ -56,7 +56,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/spec_logo.svg">
+  <link rel="icon" href="./static/images/logo.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -89,14 +89,17 @@
           More Research
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Unveiling_Differences_in_Generative_Models_A_Scalable_Differential_Clustering_Approach_CVPR_2025_paper.html">
-            Novelty Evaluation (FINC)
-          </a>
-          <a class="navbar-item" href="https://arxiv.org/abs/2411.02817">
-            Conditional Vendi Score
+          <a class="navbar-item" href="https://neurips.cc/virtual/2024/poster/96008">
+            Scalable Diversity Evaluation
           </a>
           <a class="navbar-item" href="https://github.com/mjalali/renyi-kernel-entropy">
             RKE Score
+          </a>
+          <a class="navbar-item" href="https://openreview.net/forum?id=Vb5sG3ZQjE">
+            Statistical Complexity of Vendi and RKE
+          </a>
+          <a class="navbar-item" href="https://arxiv.org/abs/2411.02817">
+            Conditional Vendi Score
           </a>
         </div>
       </div>
@@ -112,34 +115,32 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">
-            <img src="./static/images/spec_logo.svg"
-            alt="SPEC logo" style="height: 1em; width: 1em; vertical-align: up;"> <span class="spec-gradient">SPEC</span>: Explainable Comparison and Alignment of Feature Embeddings
+            <span class="spec-gradient">Scendi Score</span>: Prompt-Aware Diversity Evaluation via Schur Complement of CLIP Embeddings
           </h1>
           
           <!-- <h1 class="title is-1 publication-title">✨ <span class="sparke-gradient">SPARKE</span> : Scalable Prompt-Aware Diversity Guidance in Diffusion Models via RKE Score</h1> -->
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://aziksh-ospanov.github.io">Mohammad Jalali</a><sup>1</sup>,</span>
+              <a href="https://aziksh-ospanov.github.io">Azim Ospanov</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=R3e5mekAAAAJ&hl=en">Bahar Dibaei Nia</a><sup>2</sup>,</span>
+              <a href="https://scholar.google.com/citations?user=NxaTDyUAAAAJ&hl=en">Mohammad Jalali</a><sup>1</sup>,</span>
             <span class="author-block">
               <a href="https://www.cse.cuhk.edu.hk/~farnia/">Farzan Farnia</a><sup>1</sup>,
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>The Chinese University of Hong Kong, </span>
-            <span class="author-block"><sup>2</sup>Sharif University of Technology</span>
+            <span class="author-block"><sup>1</sup>The Chinese University of Hong Kong, Department of Computer Science & Engineering </span>
           </div>
 
           <div class="is-size-4 is-centered publication-venue">
-            <span class="sparke-gradient">Accepted at ICML 2025</span>
+            <span class="sparke-gradient">Accepted at ICCV 2025 (Highlight) </span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="https://openreview.net/forum?id=Doi0G4UNgt"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -149,7 +150,7 @@
               </span>
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2506.06231"
+                <a href="https://arxiv.org/pdf/2412.18645v3"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -158,7 +159,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2506.06231"
+                <a href="https://arxiv.org/abs/2412.18645v3"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -178,7 +179,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/mjalali/embedding-comparison"
+                <a href="https://github.com/aziksh-ospanov/scendi-score"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -187,7 +188,7 @@
                   </a>
               </span>
               <!-- Dataset Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://colab.research.google.com/drive/1gP4MCmKFXcYzWClTqIbiQ-mlsQI4RuyS?usp=sharing"
                 class="external-link button is-normal is-rounded is-dark"
                 target="_blank" rel="noopener noreferrer">
@@ -197,7 +198,7 @@
                </span>
                <span>Quick Start (Colab)</span>
                </a>
-              </span>
+              </span> -->
               <span class="link-block">
                 <a href="#bibtex"
                    class="external-link button is-normal is-rounded is-dark">
@@ -219,16 +220,31 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video poster="" id="teaser" autoplay controls muted loop playsinline height="100%">
+      <!-- <video poster="" id="teaser" autoplay controls muted loop playsinline height="100%">
         <source src="./static/videos/spec_ffhq.mp4"
                 type="video/mp4">
-      </video>
+      </video> -->
+      <img src="./static/images/scendi_overview.png">
+      </img>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">SPEC</span> compares and aligns feature embeddings by analyzing the eigenspectrum of differential kernel.
+        <span class="dnerf">Scendi</span> captures the diversity stemming from generative model itself (left) or specified prompts (right) 
       </h2>
     </div>
   </div>
 </section>
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop has-text-centered">
+    <div class="section">
+      <h2 class="title is-3">Overview of SPEC: Comparison and Alignment of Embeddings</h2>
+      <img src="./static/images_spec/figure_1.png">
+      </img>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">SPEC</span> performs an eigendecomposition of the difference of kernel matrices following the two compared embeddings on a given
+        reference dataset. SPEC-align optimizes the alignment of two embeddings by minimizing the SPEC-diff.
+      </h2>
+    </div>
+  </div>
+</section> -->
 
 <section class="section hero is-light">
   <div class="container is-max-desktop">
@@ -238,19 +254,16 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            While several feature embedding models have been developed in the literature, comparisons of these embeddings have largely focused on their numerical performance in 
-            classification-related downstream applications. However, an interpretable comparison of different embeddings requires identifying and analyzing mismatches between sample groups clustered within the embedding spaces.
+            The use of CLIP embeddings to assess the fidelity of samples produced by text-to-image generative models has been extensively explored in the literature. While the widely adopted CLIPScore, derived from the cosine similarity of text and image embeddings, effectively measures the alignment of a generated image, it does not quantify the diversity of images generated by a text-to-image model. 
           </p>
           <p>
-            In this work, we propose the <em><u><strong>S</strong></u>pectral <u><strong>P</strong></u>airwise-<u><strong>E</strong></u>mbedding <u><strong>C</strong></u>omparison (<strong>SPEC</strong>)
+            <!-- In this work, we propose the <em><u><strong>S</strong></u>pectral <u><strong>P</strong></u>airwise-<u><strong>E</strong></u>mbedding <u><strong>C</strong></u>omparison (<strong>SPEC</strong>)
               framework to compare embeddings and identify their differences in clustering a reference dataset. 
-              Our approach examines the kernel matrices derived from two embeddings and leverages the eigendecomposition of the difference kernel matrix to detect sample clusters that are captured differently by the two embeddings.
+              Our approach examines the kernel matrices derived from two embeddings and leverages the eigendecomposition of the difference kernel matrix to detect sample clusters that are captured differently by the two embeddings. -->
+              In this work, we extend the application of CLIP embeddings to quantify and interpret the intrinsic diversity of text-to-image models, which are responsible for generating diverse images from similar text prompts, referred to as prompt-aware diversity.  To achieve this, we propose a decomposition of the CLIP-based kernel covariance matrix of image data into text-based and non-text-based components. Using the Schur complement of the joint image-text kernel covariance matrix, we perform this decomposition and define the matrix-based entropy of the decomposed component as the <em><u><strong>S</u></strong>chur <u><strong>C</u></strong>omplement <u><strong>EN</strong></u>topy <u><strong>DI</strong></u>versity (Scendi)</em> score, as a measure of the prompt-aware diversity for prompt-guided generative models. 
           </p>
           <p>
-            We present a scalable implementation of this kernel-based approach, with computational complexity that grows linearly with the sample size. 
-            Furthermore, we introduce an optimization problem using this framework to align two embeddings, 
-            ensuring that clusters identified in one embedding are also captured in the other model. 
-            We provide numerical results demonstrating the SPEC's application to compare and align embeddings on large-scale datasets such as ImageNet and MS-COCO.
+            Additionally, we discuss the application of the Schur complement-based decomposition to nullify the influence of a given prompt on the CLIP embedding of an image, enabling focus or defocus of the embedded vectors on specific objects. We present several numerical results that apply our proposed Scendi score to evaluate text-to-image and LLM (text-to-text) models. Our numerical results indicate the success of the Scendi score in capturing the intrinsic diversity of prompt-guided generative models.
           </p>
         </div>
       </div>
@@ -271,12 +284,12 @@
 <section class="hero teaser">
   <div class="container is-max-desktop has-text-centered">
     <div class="section">
-      <h2 class="title is-3">Overview of SPEC: Comparison and Alignment of Embeddings</h2>
-      <img src="./static/images/figure_1.png">
+      <h2 class="title is-3">Overview of Scendi: Decomposing CLIP Embeddings</h2>
+      <img src="./static/images/clip_decomposition.png">
       </img>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">SPEC</span> performs an eigendecomposition of the difference of kernel matrices following the two compared embeddings on a given
-        reference dataset. SPEC-align optimizes the alignment of two embeddings by minimizing the SPEC-diff.
+        <span class="dnerf">Scendi</span> uses Schur Complement-based decomposition on kernel covariance matrices to remove directions specified in prompts. The example shows correlation of the input image with samples from ImageNet after removing
+        a certain concept, i.e. <em>"a guitar with cabbage" - "guitar"</em> correlates the most with <em>"cabbage"</em> images.
       </h2>
     </div>
   </div>
@@ -285,22 +298,22 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Text Embedding Comparison using SPEC</h2>
+      <h2 class="title is-3">Scendi Score with Fixed Prompts or Generated Image  Distributions</h2>
 
       <div class="swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <img src="./static/images/clip-roberta_toy_example.png" class="carousel-image" />
+            <img src="./static/images/doctors_fix_prompts.png" class="carousel-image" />
           </div>
           <div class="swiper-slide">
-            <img src="./static/images/clip-e5_toyexample.png" class="carousel-image" />
+            <img src="./static/images/doctors_fix_images.png" class="carousel-image" />
+          </div>
+          <!-- <div class="swiper-slide">
+            <img src="./static/images_spec/roberta_e5_mscoco_captions.png" class="carousel-image" />
           </div>
           <div class="swiper-slide">
-            <img src="./static/images/roberta_e5_mscoco_captions.png" class="carousel-image" />
-          </div>
-          <div class="swiper-slide">
-            <img src="./static/images/wikitext2_roberta_clip.png" class="carousel-image" />
-          </div>
+            <img src="./static/images_spec/wikitext2_roberta_clip.png" class="carousel-image" />
+          </div> -->
         </div>
 
         <!-- Navigation buttons -->
@@ -314,109 +327,62 @@
   </div>
 </section>
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Image Embedding Comparison using SPEC</h2>
-
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="./static/images/clip-dino_imagenette.png" class="carousel-image" />
-          </div>
-          <div class="swiper-slide">
-            <img src="./static/images/clip-dino_imagewoof.png" class="carousel-image" />
-          </div>
-          <div class="swiper-slide">
-            <img src="./static/images/afhq.jpg" class="carousel-image" />
-          </div>
-          <div class="swiper-slide">
-            <img src="./static/images/ffhq.jpg" class="carousel-image" />
-          </div>
-        </div>
-
-        <!-- Navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <!-- Optional pagination -->
-        <div class="swiper-pagination"></div>
-      </div>
+<section class="hero teaser">
+  <div class="container is-max-desktop has-text-centered">
+    <div class="section">
+      <h2 class="title is-3">Comparing the Scendi Score with Other Metrics for Prompt-Based Diversity Evaluation</h2>
+      <img src="./static/images/scendi_vs_others.png">
+      </img>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Scendi</span> distinguishes between two sources of diversity: the underlying prompts and the generative model itself. When a specific breed is mentioned in the prompts, 
+        the score attributes variations in cat breeds to the prompts. However, if the prompts only specify 'cats', then increased diversity in breeds is attributed to the generative model.
+      </h2>
     </div>
   </div>
 </section>
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Alignment of Embeddings using SPEC</h2>
-
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="./static/images/alignment_imagenette.jpg" class="carousel-image" />
-          </div>
-          <div class="swiper-slide">
-            <img src="./static/images/alignment_imagewoof.jpg" class="carousel-image" />
-          </div>
-          <div class="swiper-slide">
-            <img src="./static/images/align_kernels.jpg" class="carousel-image" />
-          </div>
-        </div>
-
-        <!-- Navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <!-- Optional pagination -->
-        <div class="swiper-pagination"></div>
-      </div>
+<section class="hero teaser">
+  <div class="container is-max-desktop has-text-centered">
+    <div class="section">
+      <h2 class="title is-3">Effect of CLIP Direction Removal on K-PCA Clusters</h2>
+      <img src="./static/images/animals_with_fruits_clustering.png">
+      </img>
+      <h2 class="subtitle has-text-centered">
+        Before decomposition, K-PCA clusters exhibit distinct groupings for animals and fruits. After decomposition, the clusters primarily reflect the remaining direction,
+        for example, after removing the 'fruit' component, the clusters focus on animal species, and vice versa. 
+      </h2>
     </div>
   </div>
 </section>
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Comparing similarity ranking for SPEC clusters </h2>
-
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="./static/images/sanity_FFHQ.jpg" class="carousel-image" />
-          </div>
-          <div class="swiper-slide">
-            <img src="./static/images/sanity_AFHQ.jpg" class="carousel-image" />
-          </div>
-        </div>
-
-        <!-- Navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <!-- Optional pagination -->
-        <div class="swiper-pagination"></div>
-      </div>
+<section class="hero teaser">
+  <div class="container is-max-desktop has-text-centered">
+    <div class="section">
+      <h2 class="title is-3">Scendi and Typographic Attacks</h2>
+      <img src="./static/images/typographic_attacks.png">
+      </img>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Scendi</span>-based CLIP decomposition can reduce susceptibility to typographic attacks. 
+      </h2>
     </div>
   </div>
 </section>
-
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title"><a id="bibtex">BibTeX</a></h2>
     <p>To cite this work, please use the following BibTeX entries:</p>
-    <p>SPEC framework for pairwise comparison of Embeddings:</p>
+    <!-- <p>Scendi framework for prompt-aware diversity evaluation:</p> -->
     <pre><code>@inproceedings{
-      jalali2025spec,
-      title = {Towards an Explainable Comparison and Alignment of Feature Embeddings},
-      author = {Mohammad Jalali and Bahar Dibaei Nia and Farzan Farnia},
-      booktitle = {Forty-second International Conference on MachineLearning},
-      year = {2025},
-      url = {https://openreview.net/forum?id=Doi0G4UNgt}
+      ospanov2025scendi,
+      title = {Scendi Score: Prompt-Aware Diversity Evaluation via Schur Complement of CLIP Embeddings},
+      author = {Azim Ospanov and Mohammad Jalali and Farzan Farnia},
+      booktitle = {International Conference on Computer Vision},
+      year = {2025}
+      <!-- url = {https://arxiv.org/html/2412.18645v3} -->
 }</code></pre>
 
-    <p>FINC framework for pairwise comparison of generative models:</p>
+    <!-- <p>FINC framework for pairwise comparison of generative models:</p>
     <pre><code>@InProceedings{zhang2025finc,
       author = {Zhang, Jingwei and Jalali, Mohammad and Li, Cheuk Ting and Farnia, Farzan},
       title = {Unveiling Differences in Generative Models: A Scalable Differential Clustering Approach},
@@ -424,7 +390,7 @@
       month = {June},
       year = {2025},
       pages = {8269-8278}
-}</code></pre>     
+}</code></pre>      -->
   </div>
 </section>
 
