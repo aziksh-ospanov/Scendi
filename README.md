@@ -1,6 +1,6 @@
-# SPARKE Diversity Guidance for Diffusion Models homepage
-The Project page for paper: [SPARKE: Scalable Prompt-Aware Diversity Guidance in Diffusion Models via RKE Score
-](https://arxiv.org/abs/2506.10173).
+# Homepage for Scendi Score for Prompt-Aware Diversity Evaluation
+The Project page for paper: [Scendi Score: Prompt-Aware Diversity Evaluation via Schur Complement of CLIP Embeddings
+]([https://arxiv.org/abs/2506.10173](https://arxiv.org/abs/2412.18645v3)).
 
-See the project Github Code: [https://github.com/mjalali/sparke-guidance](https://github.com/mjalali/sparke-guidance).
+See the project Github Code: [https://github.com/aziksh-ospanov/scendi-score](https://github.com/aziksh-ospanov/scendi-score).
 
